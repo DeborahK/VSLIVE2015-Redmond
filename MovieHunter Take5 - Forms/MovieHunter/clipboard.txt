@@ -1,0 +1,59 @@
+﻿--- Validation Messages ---
+					 <!-- With ngMessages-include -->
+                    <span class="help-block has-error"
+                          ng-if="movieForm.inputMovieTitle.$touched">
+                        <span ng-messages="movieForm.inputMovieTitle.$error"
+                              ng-messages-include="app/validationMessages.html">
+                        </span>
+                    </span>
+
+--- Model Options ---
+
+ng-model-options="{updateOn:'blur'}"
+ng-model-options="{debounce: 1500}"
+
+ng-keyup="vm.cancelEntry(movieForm.inputMovieTitle, $event)"
+
+--- Custom Validator ---
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="inputStarRating"
+                               name="inputStarRating"
+                               placeholder="Rating (required)"
+                               type="number"
+                               ng-model="vm.movie.starRating"
+                               required
+                               min="1"
+                               max="5"
+                               director-min-rating-validator="vm.movie.director" />
+                    </div>
+                    <span class="help-block has-error">
+                        <span ng-messages="movieForm.inputStarRating.$error">
+                            <span ng-message="required">Please enter a number between 1 and 5</span>
+                            <span ng-message="min">Please enter a number between 1 and 5</span>
+                            <span ng-message="max">Please enter a number between 1 and 5</span>
+                            <span ng-message="directorMinRating">Minimum rating for this director is 4</span>
+                        </span>
+                    </span>
+
+--- Async Validator ---
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="inputMovieTitle"
+                               name="inputMovieTitle"
+                               type="text"
+                               placeholder="Title (required)"
+                               ng-model="vm.movie.title"
+                               required
+                               duplicate-title-validator="vm.movie.movieId"
+                               ng-minlength="3"
+                               ng-maxlength="50" />
+                    </div>
+                        <span ng-messages="movieForm.inputMovieTitle.$error">
+                            <span ng-message="required">Movie title is required</span>
+                            <span ng-message="minlength">Movie title must be at least 3 characters in length</span>
+                            <span ng-message="maxlength">Movie title cannot exceed 50 characters in length</span>
+							<span ng-message="duplicateTitle">That movie title has already been used.</span>
+                        </span>
+
+
