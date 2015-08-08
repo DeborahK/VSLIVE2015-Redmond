@@ -6,9 +6,9 @@
     // To use Web API
     var app = angular.module("movieHunter",
                             ["ngRoute",
+                            "ngMessages",
                             "common.services",
-                            "common.directives",
-                            "ngMessages"]);
+                            "common.directives"]);
 
     app.config(["$routeProvider",
         function ($routeProvider) {
