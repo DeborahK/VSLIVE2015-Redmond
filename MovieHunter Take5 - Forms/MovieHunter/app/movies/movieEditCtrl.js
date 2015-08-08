@@ -36,12 +36,5 @@
                 vm.message = "Please correct the validation errors and try saving again.";
             }
         };
-
-        // When using ng-model-options
-        vm.cancelEntry = function (control, event) {
-            if (event.keyCode == 27) {
-                control.$rollbackViewValue();  
-            }
-        };
     }
 }());

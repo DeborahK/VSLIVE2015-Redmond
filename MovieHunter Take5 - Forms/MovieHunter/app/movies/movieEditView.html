@@ -10,8 +10,10 @@
             <fieldset>
                 <legend>Edit Movie Information</legend>
                 <div class="form-group"
-                     ng-class="{'has-error':movieForm.inputMovieTitle.$invalid &&
-                                            movieForm.inputMovieTitle.$dirty}">
+                     ng-class="{'has-error':movieForm.inputMovieTitle.$invalid}">
+                    <!--<div class="form-group"
+                         ng-class="{'has-error':movieForm.inputMovieTitle.$invalid &&
+                        movieForm.inputMovieTitle.$dirty}">-->
                     <label class="col-md-2 control-label"
                            for="inputMovieTitle">Movie Title</label>
 
@@ -24,14 +26,15 @@
                                ng-model="vm.movie.title"
                                required
                                ng-minlength="3"
-                               ng-maxlength="50"
-                               duplicate-title-validator="vm.movie.movieId" />
+                               ng-maxlength="50" />
                     </div>
-                    <span class="help-block"
-                          ng-if="movieForm.inputMovieTitle.$dirty">
-                        <span ng-messages="movieForm.inputMovieTitle.$error"
-                              ng-messages-include="app/validationMessages.html">
-                            <span ng-message="duplicateTitle">That movie title has already been used.</span>
+                    <span class="help-block">
+                        <!--<span class="help-block"
+                        ng-if="movieForm.inputMovieTitle.$dirty">-->
+                        <span ng-messages="movieForm.inputMovieTitle.$error">
+                            <span ng-message="required">Movie title is required</span>
+                            <span ng-message="minlength">Movie title must be at least 3 characters in length</span>
+                            <span ng-message="maxlength">Movie title cannot exceed 50 characters in length</span>
                         </span>
                     </span>
                 </div>
@@ -83,8 +86,7 @@
                                ng-model="vm.movie.starRating"
                                required
                                min="1"
-                               max="5"
-                               director-min-rating-validator="vm.movie.director" />
+                               max="5" />
                     </div>
                     <span class="help-block"
                           ng-if="movieForm.inputStarRating.$dirty">
@@ -92,7 +94,6 @@
                             <span ng-message="required">Please enter a number between 1 and 5</span>
                             <span ng-message="min">Please enter a number between 1 and 5</span>
                             <span ng-message="max">Please enter a number between 1 and 5</span>
-                            <span ng-message="directorMinRating">Minimum rating for this director is 4</span>
                         </span>
                     </span>
                 </div>
